@@ -10,6 +10,10 @@ const PORT = 3000;
 const qaFilePath = path.join(__dirname, "data", "qa.json");
 const qaData = JSON.parse(fs.readFileSync(qaFilePath, "utf-8"));
 
+// Load questions and answers for list
+const qaListFilePath = path.join(__dirname, "data", "qa-back.json");
+const qaList = JSON.parse(fs.readFileSync(qaListFilePath, "utf-8"));
+
 // Prepare tokenizer and stemmer
 const tokenizer = new natural.WordTokenizer();
 const stemmer = natural.PorterStemmer;
@@ -29,7 +33,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Routes
 app.get("/", (req, res) => {
-    res.render("index.ejs", { qaData });
+    res.render("index.ejs", { qaList });
 });
 
 app.post("/api/chat", (req, res) => {
