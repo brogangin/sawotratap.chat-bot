@@ -13,6 +13,7 @@ let qaData = JSON.parse(fs.readFileSync(qaFilePath, "utf-8"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // Routes
 app.get("/", (req, res) => {
