@@ -1,13 +1,25 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const natural = require("natural");
 
 const app = express();
 const PORT = 3000;
 
 // Load questions and answers
 const qaFilePath = path.join(__dirname, "data", "qa.json");
-let qaData = JSON.parse(fs.readFileSync(qaFilePath, "utf-8"));
+const qaData = JSON.parse(fs.readFileSync(qaFilePath, "utf-8"));
+
+// Prepare tokenizer and stemmer
+const tokenizer = new natural.WordTokenizer();
+const stemmer = natural.PorterStemmer;
+
+// Preprocess intents
+qaData.intents.forEach((intent) => {
+    intent.patterns = intent.patterns.map((pattern) =>
+        tokenizer.tokenize(pattern.toLowerCase()).map((word) => stemmer.stem(word))
+    );
+});
 
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
@@ -22,18 +34,7 @@ app.get("/", (req, res) => {
 
 app.post("/api/chat", (req, res) => {
     const { question } = req.body;
-    // Normalisasi user input: lowercase dan hapus spasi tambahan
-    const normalizedQuestion = question.toLowerCase().trim().replace(/\s+/g, " ");
-
-    // Mencari pertanyaan yang cocok dalam qaData
-    const matchingKey = Object.keys(qaData).find((key) => {
-        // Normalisasi key dari qaData: lowercase dan hapus spasi tambahan
-        const normalizedKey = key.toLowerCase().trim().replace(/\s+/g, " ");
-        return normalizedKey === normalizedQuestion;
-    });
-
-    const answer = matchingKey ? qaData[matchingKey] : "Maaf, saya tidak tahu jawabannya.";
-
+    const answer = findBestMatch(question);
     res.json({ question, answer });
 });
 
@@ -44,6 +45,44 @@ app.post("/api/add", (req, res) => {
     fs.writeFileSync(qaFilePath, JSON.stringify(qaData, null, 2), "utf-8");
     res.json({ message: "Pertanyaan dan jawaban berhasil ditambahkan." });
 });
+
+// NLP function to find best match
+function findBestMatch(question) {
+    const tokenizedQuestion = tokenizer
+        .tokenize(question.toLowerCase())
+        .map((word) => stemmer.stem(word));
+
+    let bestMatch = null;
+    let highestScore = 0;
+
+    for (const intent of qaData.intents) {
+        for (const pattern of intent.patterns) {
+            const score = calculateMatchScore(tokenizedQuestion, pattern);
+            if (score > highestScore) {
+                highestScore = score;
+                bestMatch = intent;
+            }
+        }
+    }
+
+    if (bestMatch && highestScore > 0.3) {
+        // Threshold for accepting a match
+        return bestMatch.responses[Math.floor(Math.random() * bestMatch.responses.length)];
+    } else {
+        return "Maaf, saya tidak memahami pertanyaan Anda. Bisakah Anda mengajukan pertanyaan dengan cara lain?";
+    }
+}
+
+// Function to calculate match score
+function calculateMatchScore(questionTokens, patternTokens) {
+    let matchedTokens = 0;
+    for (const token of questionTokens) {
+        if (patternTokens.includes(token)) {
+            matchedTokens++;
+        }
+    }
+    return matchedTokens / Math.max(questionTokens.length, patternTokens.length);
+}
 
 // Start server
 app.listen(PORT, () => {
