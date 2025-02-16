@@ -32,14 +32,20 @@
                     </div>
                     <div id="chat-output"></div>
                     <div class="input-container">
-                        <input type="text" id="chat-input" placeholder="Tanyakan sesuatu..." />
+                        <input
+                            type="text"
+                            id="chat-input"
+                            placeholder="Tanyakan sesuatu..."
+                            autocomplete="off"
+                        />
+
                         <button id="send-button">Kirim</button>
                     </div>
                 </div>
             </main>
         </div>
         <script src="/js/app.js"></script>
-        <script>
+        <!-- <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const itemList = document.getElementById("question-list");
                 const selectedItem = document.getElementById("chat-input");
@@ -81,6 +87,6 @@
                     }
                 });
             });
-        </script>
+        </script> -->
     </body>
 </html>
