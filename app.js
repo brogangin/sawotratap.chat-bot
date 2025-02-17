@@ -37,6 +37,10 @@ app.get("/", (req, res) => {
     res.render("index.ejs", { qaList });
 });
 
+app.get("/peta", (req, res) => {
+    res.render("peta.ejs");
+});
+
 app.post("/api/chat", (req, res) => {
     const { question } = req.body;
     const answer = findBestMatch(question);

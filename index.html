@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Suplier Sembako</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header>
+        <h1>Sistem Informasi Suplier Sembako Jawa Timur</h1>
+    </header>
+    <main>
+        <section id="map">
+            <h2>Peta Lokasi Suplier</h2>
+            <div id="map-container"></div>
+            <div id="filter">
+                <label for="commodity">Pilih Komoditas:</label>
+                <select id="commodity">
+                    <option value="all">Semua</option>
+                    <option value="telur">Telur</option>
+                    <option value="beras">Beras</option>
+                    <!-- Tambahkan opsi komoditas lainnya -->
+                </select>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

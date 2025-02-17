@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/gaya.css" />
         <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico" /> -->
         <link rel="icon" type="image/svg" sizes="any" href="image/favicon.svg" />
         <!-- <link rel="manifest" href="/site.webmanifest" /> -->
@@ -11,6 +12,8 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
             rel="stylesheet"
         />
+        <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
         <title>Chatbot - Sawotratap</title>
         <style></style>
     </head>
@@ -23,12 +26,11 @@
                     ></a>
                 </h2>
                 <hr />
-                <h2>Pertanyaan</h2>
-                <ul id="question-list">
-                    <% for (const question in qaList) { %>
-                    <li><%= question %></li>
-                    <% } %>
-                </ul>
+                <h2>
+                    <a href="/" style="text-decoration: none; color: #1a252f"
+                        >Chatbot <i class="fa-solid fa-share"></i
+                    ></a>
+                </h2>
             </aside>
             <main class="chat-container">
                 <div class="header">
@@ -55,55 +57,15 @@
                     <!-- <div class="chat-card-title">Sawotratap Answer</div> -->
                 </div>
                 <div class="chat-card">
-                    <div id="chat-output">
-                        <pre
-                            class="bot-chat"
-                            style="
-                                white-space: pre-wrap;
-                                font-family: 'Helvetica Neue', Arial, sans-serif;
-                            "
-                        ><strong><i class="fas fa-robot" style="color: #1a252f; font-size: 20px;"></i></strong>Halo! Saya adalah minbot yang menjelaskan seputar Desa Sawotratap. Apa yang ingin anda ketahui tentang Desa Sawotratap?</pre>
-                    </div>
-                    <div class="input-container">
-                        <input
-                            type="text"
-                            id="chat-input"
-                            placeholder="Tanyakan sesuatu..."
-                            autocomplete="off"
-                        />
-
-                        <button id="send-button">Kirim</button>
-                    </div>
+                    <div id="map-container"></div>
                 </div>
             </main>
         </div>
-        <script src="/js/app.js"></script>
+        <script type="module" src="/js/script.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const itemList = document.getElementById("question-list");
-                const selectedItem = document.getElementById("chat-input");
                 const menuToggle = document.getElementById("menu-toggle");
                 const sidebar = document.getElementById("sidebar");
-
-                itemList.addEventListener("click", function (e) {
-                    if (e.target && e.target.nodeName === "LI") {
-                        selectedItem.value = e.target.textContent;
-                        selectedItem.focus();
-                        if (window.innerWidth <= 768) {
-                            sidebar.classList.remove("active");
-                        }
-                    }
-                });
-
-                itemList.addEventListener("keydown", function (e) {
-                    if (e.key === "Enter" && e.target.nodeName === "LI") {
-                        selectedItem.value = e.target.textContent;
-                        selectedItem.focus();
-                        if (window.innerWidth <= 768) {
-                            sidebar.classList.remove("active");
-                        }
-                    }
-                });
 
                 menuToggle.addEventListener("click", function (e) {
                     e.stopPropagation();

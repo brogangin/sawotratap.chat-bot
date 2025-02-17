@@ -1,7 +1,8 @@
 body {
     margin: 0;
     font-family: "Helvetica Neue", Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #eee;
+    color: #1a252f;
 }
 
 .container {
@@ -16,12 +17,20 @@ body {
     border-right: 1px solid #e0e0e0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    z-index: 10000000 !important;
 }
 
 .sidebar h2 {
     margin: 0 0 20px;
     font-size: 1.5em;
-    color: #333;
+    color: #1a252f;
+}
+.sidebar .a {
+    text-decoration: none;
+    color: #1a252f;
+}
+.sidebar a:hover {
+    color: #0067c8 !important;
 }
 
 .sidebar ul {
@@ -53,13 +62,13 @@ body {
     max-width: 100rem;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* background-color: #ffffff; */
+    background-color: #ffffff26;
     border-radius: 8px;
 }
 
 .chat-card-title {
-    /* background-color: black; */
-    color: black;
+    /* background-color: #1a252f; */
+    color: #1a252f;
     font-size: 20px;
     padding: 10px;
     font-weight: bold;
@@ -87,7 +96,7 @@ body {
     text-align: right; /* Align text to the right */
     border-radius: 7px;
     padding: 10px;
-    background-color: rgb(48, 48, 48);
+    background-color: #1a252f;
     display: inline-block;
     max-width: 80%;
     margin: 5px 0;
@@ -96,11 +105,11 @@ body {
 }
 
 .bot-chat {
-    color: #fff;
+    color: #1e1e1e;
     text-align: left;
     border-radius: 7px;
     padding: 10px;
-    background-color: rgb(48, 48, 48);
+    background-color: #e1e1e1;
     display: inline-block;
     max-width: 80%;
     margin: 5px 0;
@@ -117,14 +126,14 @@ body {
 }
 
 #chat-input:focus {
-    border-color: #000000;
+    border-color: #1a252f;
     outline: none;
 }
 
 #send-button {
     padding: 10px 20px;
     margin-top: 10px;
-    background-color: #000000;
+    background-color: #1a252f;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -133,7 +142,7 @@ body {
 }
 
 #send-button:hover {
-    background-color: #000000;
+    background-color: #1a252f;
 }
 
 /* Reset dan style dasar */
@@ -155,7 +164,7 @@ html {
 /* Sidebar styles */
 .sidebar {
     width: 280px;
-    background-color: #f0f0f0;
+    background-color: #eee;
     padding: 20px;
     overflow-y: auto;
     transition: transform 0.3s ease;
@@ -231,7 +240,7 @@ html {
 }
 .chat-card-title {
     padding: 1.5rem;
-    color: black;
+    color: #1a252f;
     font-size: 1.2em;
     font-weight: bold;
 }
@@ -306,6 +315,20 @@ input[type="submit"] {
     bottom: 100%;
     left: 0;
     right: 0;
+}
+
+.search .autocomplete-items {
+    top: 100%;
+    width: fit-content;
+    border: none;
+    height: fit-content;
+    background-color: #eee;
+}
+.search .autocomplete-items div {
+    /* margin-top: 16px; */
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 8px;
 }
 
 .autocomplete-items div {

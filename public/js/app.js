@@ -4,7 +4,7 @@ document.getElementById("send-button").addEventListener("click", async () => {
 
     if (input.value.trim() !== "") {
         const question = input.value;
-        output.innerHTML += `<pre class="user-chat" style=" white-space: pre-wrap; font-family: 'Helvetica Neue', Arial, sans-serif;"><strong><i class="fas fa-user" style="color: white; font-size: 20px;"></i></strong>\n${question}</pre>`;
+        output.innerHTML += `<pre class="user-chat" style=" white-space: pre-wrap; font-family: 'Helvetica Neue', Arial, sans-serif;">${question}<strong><i class="fas fa-user" style="color: white; font-size: 20px;"></i></strong></pre>`;
 
         const response = await fetch("/api/chat", {
             method: "POST",
@@ -13,7 +13,7 @@ document.getElementById("send-button").addEventListener("click", async () => {
         });
         const data = await response.json();
 
-        output.innerHTML += `<pre class="bot-chat" style=" white-space: pre-wrap; font-family: 'Helvetica Neue', Arial, sans-serif;"><strong><i class="fas fa-robot" style="color: white; font-size: 20px;"></i></strong>\n${data.answer}</pre>`;
+        output.innerHTML += `<pre class="bot-chat" style=" white-space: pre-wrap; font-family: 'Helvetica Neue', Arial, sans-serif;"><strong><i class="fas fa-robot" style="color: #1a252f; font-size: 20px;"></i></strong>${data.answer}</pre>`;
 
         input.value = "";
         output.scrollTop = output.scrollHeight;
