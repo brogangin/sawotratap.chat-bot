@@ -1,5 +1,3 @@
-import { floodDatas } from "/data/floodData.js";
-
 const map = L.map("map-container").setView([-7.2575, 112.7521], 10);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
