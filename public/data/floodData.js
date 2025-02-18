@@ -1,47 +1,47 @@
 const floodDatas = [
     {
         id: 1,
-        nama_floodData: "RT 01 RW 01 Sawotratap",
+        nama_floodData: "RW 10 Sawotratap",
         koordinat: {
-            lat: -7.3461,
-            lng: 112.7278,
+            lat: -7.36821,
+            lng: 112.733974,
         },
         kontak: {
             whatsapp: "6281234567890",
             instagram: "@sawotratap_siaga",
             website: "https://sawotratap.sidoarjokab.go.id",
         },
-        alamat: "Jl. Sawotratap No. 1, Gedangan, Sidoarjo",
-        tingkat_banjir: "sedang",
+        alamat: "Jl. Gajah Mada, Gedangan, Sidoarjo",
+        tingkat_banjir: "Tinggi",
     },
     {
         id: 2,
-        nama_floodData: "RT 03 RW 02 Sawotratap",
+        nama_floodData: "RW 12 Sawotratap",
         koordinat: {
-            lat: -7.3475,
-            lng: 112.729,
+            lat: -7.36887,
+            lng: 112.737941,
         },
         kontak: {
             whatsapp: "6285678901234",
             instagram: "@sawotratap_alert",
             website: "https://sawotratap.sidoarjokab.go.id",
         },
-        alamat: "Jl. Raya Sawotratap No. 15, Gedangan, Sidoarjo",
+        alamat: "Jl. Kertanegara, Gedangan, Sidoarjo",
         tingkat_banjir: "tinggi",
     },
     {
         id: 3,
-        nama_floodData: "RT 05 RW 03 Sawotratap",
+        nama_floodData: "RW 06 Sawotratap",
         koordinat: {
-            lat: -7.345,
-            lng: 112.7265,
+            lat: -7.371228,
+            lng: 112.730667,
         },
         kontak: {
             whatsapp: "6289012345678",
             instagram: "@sawotratap_info",
             website: "https://sawotratap.sidoarjokab.go.id",
         },
-        alamat: "Jl. Sawotratap Timur No. 8, Gedangan, Sidoarjo",
-        tingkat_banjir: "rendah",
+        alamat: "Jl. Nala, Gedangan, Sidoarjo",
+        tingkat_banjir: "Tinggi",
     },
 ];
